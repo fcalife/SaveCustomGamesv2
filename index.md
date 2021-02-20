@@ -1,37 +1,32 @@
-## Welcome to GitHub Pages
+## Issue: 30 games requirement to use the Arcade
 
-You can use the [editor on GitHub](https://github.com/fcalife/SaveCustomGamesv2/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+**Problem:** Players can no longer download Dota 2 just to play custom games on the Arcade; instead, they are now forced to play 30 games of  Dota 2, even if their original interest was in playing Autochess or some other custom game. This has severely handicapped the ability of custom games to bring new players into the Dota 2 ecosystem, since many of them will simply see the restriction and leave. This was a band-aid solution to deal with bots, and was never replaced with a better, permanent one.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+**Suggested solution:** Make the 30 game requirement opt-in instead of mandatory, on a custom game basis, by making it an option in the game’s addon settings (addoninfo.txt file). That way, games which are not under bot attack can be enjoyed by new players, and those which are can enable the 30-game bot protection.
 
-### Markdown
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## Issue: hour-long ban for failing to ready up for a custom game
 
-```markdown
-Syntax highlighted code block
+Problem: A 1 hour ban is given when a player fails to click accept on any custom game lobby. This is too severe a penalty for real players, and causes constant issues due to simple human errors.
 
-# Header 1
-## Header 2
-### Header 3
+To compound this issue, the penalty is applied even on 1-player lobbies. It is also exploitable if the lobby’s host is a griefer, since they can start the lobby early (before the proper amount of players for the game is reached), giving players the choice of either taking an 1 hour penalty for something out of their control, or wasting the sometimes several minutes they spent finding their current lobby so far.
 
-- Bulleted
-- List
+Suggested solution: Do not punish players for not clicking the accept button if:
+a) It is a single player lobby, or
+b) The lobby does not have full players.
 
-1. Numbered
-2. List
+Also, scale the punishment like in regular dota: start with a 5 minute penalty, then 10 minutes, 30, 60, and so on. 
 
-**Bold** and _Italic_ and `Code` text
 
-[Link](url) and ![Image](src)
-```
+## Issue: kicked players can rejoin lobbies instantly
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+Problem: Players who are kicked from lobbies can instantly rejoin them. This is exploited by bots and griefers to rejoin faster than anyone can kick them out.
 
-### Jekyll Themes
+Suggested solution: Make it so players cannot join a lobby they have been kicked from either for the duration of the lobby or for 5 minutes. Also, to avoid bots quickly joining and leaving a lobby in order to avoid being kicked from it, add a small cooldown (5 seconds would be enough) to a player’s ability to enter or leave a lobby (can’t leave if you just joined, can’t rejoin if you just left).
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/fcalife/SaveCustomGamesv2/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### Support or Contact
+## Issue: games auto-start when the last player joins
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Problem: Griefers will join lobbies when they are missing a single player, causing the game to auto-start. This causes the other players to be trapped with the griefer, since they cannot decline (as that would only grant them a 1-hour arcade ban). Bots are especially effective at this type of griefing, for obvious reasons.
+
+Suggested solution: Add a 5 second countdown to game start so that hosts will have a chance to kick out griefers that try to sneak in. Players should NOT be able to leave the lobby during this countdown - it should serve strictly for the host to be able to kick bad actors. If that happens, the lobby should stop the countdown and go back to its previous state (waiting for players).
