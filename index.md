@@ -1,4 +1,4 @@
-This page lists some current issues with the Dota 2 arcade, and possible solutions that we believe Valve could implement to fix or improve them.
+This page lists some of the current user experience issues with the Dota 2 arcade, and possible solutions that we believe Valve could implement to fix or improve them.
 
 ## Issue: 30 games requirement to use the Arcade
 
